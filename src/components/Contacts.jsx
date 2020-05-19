@@ -1,22 +1,33 @@
 import React from 'react';
 
+import Loading from './Loading';
 import Contact from './Contact';
 
 class Contacts extends React.Component {
 	render() {
+        const contacts = this.props.contacts;
+        const loading = this.props.loading;
+
+        const labelObj = {
+            id: 0,
+            name: "Nome",
+            avatar: "",
+            company: "Empresa",
+            department: "Departamento",
+            admissionDate: "Admissão",
+            phone: "Telefone",
+            country: "País"
+        };
+
 		return (
 			<div className="container" data-testid="contacts">
+                { loading ? <Loading /> : null }
+
 				<section className="contacts">
-					<article className="contact">
-						<span className="contact__avatar" />
-						<span className="contact__data">Nome</span>
-						<span className="contact__data">Telefone</span>
-						<span className="contact__data">País</span>
-						<span className="contact__data">Admissão</span>
-						<span className="contact__data">Empresa</span>
-						<span className="contact__data">Departamento</span>
-					</article>
-					<Contact />
+                    { contacts.length === 0 ? null : <Contact key={labelObj.id} contact={labelObj} /> }
+					{ contacts.map(contact => {
+                        return <Contact key={contact.id} contact={contact} />
+                    }) }
 				</section>
 			</div>
 		);

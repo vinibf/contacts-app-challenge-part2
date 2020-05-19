@@ -27,13 +27,13 @@ class App extends React.Component {
         });
 
         api.get("contacts").then(data => {
-            console.log(data);
-
-            this.setState({
-                contactList: data,
-                filteredContacts: data,
-                loadingContacts: false
-            });
+            setTimeout(() => {
+                this.setState({
+                    contactList: data,
+                    filteredContacts: data,
+                    loadingContacts: false
+                });
+            }, 500);
             // Ordenar por 'nome' ao carregar
         });
     }
@@ -42,8 +42,11 @@ class App extends React.Component {
 		return (
 			<React.Fragment>
 				<Topbar />
-				<Filters />
-				<Contacts />
+				<Filters searchString={this.state.searchString} />
+				<Contacts
+                    contacts={this.state.filteredContacts}
+                    loading={this.state.loadingContacts}
+                />
 			</React.Fragment>
 		)
 	}
