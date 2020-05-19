@@ -5,7 +5,8 @@ import Filters from './components/Filters';
 import Contacts from './components/Contacts';
 
 import api from './services/api';
-//import ordering from './services/ordering';
+//import filterContactsByName from './services/filtering'
+//import so from './services/ordering';
 
 import './App.scss';
 
@@ -40,14 +41,14 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<React.Fragment>
-				<Topbar />
+            <div className="app" data-testid="app">
+                <Topbar />
 				<Filters searchString={this.state.searchString} />
 				<Contacts
                     contacts={this.state.filteredContacts}
                     loading={this.state.loadingContacts}
                 />
-			</React.Fragment>
+            </div>
 		)
 	}
 }
