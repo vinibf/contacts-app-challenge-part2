@@ -14,7 +14,6 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            searchString: "",
             contactList: [],
             filteredContacts: [],
             loadingContacts: false,
@@ -39,11 +38,21 @@ class App extends React.Component {
         });
     }
 
+    handleChangeSearch = (searchString) => {
+        const searchResults = filterContactsByName(this.state.contactList, searchString);
+
+        this.setState({
+            filteredContacts: searchResults
+        });
+    };
+
 	render() {
 		return (
             <div className="app" data-testid="app">
                 <Topbar />
-				<Filters searchString={this.state.searchString} />
+				<Filters
+                    handleChangeSearch={this.handleChangeSearch}
+                />
 				<Contacts
                     contacts={this.state.filteredContacts}
                     loading={this.state.loadingContacts}
