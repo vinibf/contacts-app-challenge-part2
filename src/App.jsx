@@ -17,7 +17,8 @@ class App extends React.Component {
             contactList: [],
             filteredContacts: [],
             loadingContacts: false,
-            sortingType: ""
+            sortingCategory: "",
+            sortingDirection: ""
         };
     }
 
@@ -46,12 +47,33 @@ class App extends React.Component {
         });
     };
 
+    handleClickSort = (category) => {
+        let newDirection = "";
+        const currentDirection = this.state.sortingDirection;
+
+        if (this.state.sortingCategory === category) {
+            currentDirection === "ASC" ? newDirection = "DESC" : newDirection = "ASC";
+        } else {
+            newDirection = "ASC";
+        }
+
+        const sortingResults = sortContactsBy(this.state.filteredContacts, category, newDirection);
+
+        this.setState({
+            filteredContacts: sortingResults,
+            sortingCategory: category,
+            sortingDirection: newDirection
+        });
+    };
+
 	render() {
 		return (
             <div className="app" data-testid="app">
                 <Topbar />
 				<Filters
+                    sortingCategory={this.state.sortingCategory}
                     handleChangeSearch={this.handleChangeSearch}
+                    handleClickSort={this.handleClickSort}
                 />
 				<Contacts
                     contacts={this.state.filteredContacts}
