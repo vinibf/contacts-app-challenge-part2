@@ -5,8 +5,8 @@ import Filters from './components/Filters';
 import Contacts from './components/Contacts';
 
 import api from './services/api';
-//import filterContactsByName from './services/filtering'
-//import so from './services/ordering';
+import filterContactsByName from './services/filtering';
+import sortContactsBy from './services/sorting';
 
 import './App.scss';
 

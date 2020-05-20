@@ -1,5 +1,6 @@
 const filterContactsByName = (contactList, name) => {
-    const filteredContacts = contactList.filter(contact => contact.name.includes(name));
+    const searchName = name.toLowerCase();
+    const filteredContacts = contactList.filter(contact => contact.name.toLowerCase().includes(searchName));
 
     return filteredContacts;
 };
