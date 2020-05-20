@@ -3,40 +3,33 @@ import dayjs from 'dayjs';
 
 class Contact extends React.Component {
 	render() {
-        const {
-            avatar,
-            name,
-            phone,
-            country,
-            admissionDate,
-            company,
-            department
-        } = this.props.contact;
+        const { contact } = this.props;
 
-        const date = dayjs(admissionDate).format("DD/MM/YYYY");
+        let date = contact.admissionDate;
+        if(date !== "Admissão") date = dayjs(date).format("DD/MM/YYYY");
 
 		return (
 			<article className="contact" data-testid="contact">
-				<span className="contact__avatar">
-                    <img src={avatar} alt={name} />
+				<span className="contact__avatar" data-testid="contact-avatar">
+                    <img src={contact.avatar} alt={contact.name} />
                 </span>
-				<span className="contact__data">
-                    {name}
+				<span className="contact__data" data-testid="contact-name">
+                    {contact.name}
                 </span>
-				<span className="contact__data">
-                    {phone}
+				<span className="contact__data" data-testid="contact-phone">
+                    {contact.phone}
                 </span>
-				<span className="contact__data">
-                    {country}
+				<span className="contact__data" data-testid="contact-country">
+                    {contact.country}
                 </span>
-				<span className="contact__data">
-                    { date === "Invalid Date" ? "Admissão" : date }
+				<span className="contact__data" data-testid="contact-date">
+                    { date }
                 </span>
-				<span className="contact__data">
-                    {company}
+				<span className="contact__data" data-testid="contact-company">
+                    {contact.company}
                 </span>
-				<span className="contact__data">
-                    {department}
+				<span className="contact__data" data-testid="contact-department">
+                    {contact.department}
                 </span>
 			</article>
 		);
