@@ -22,11 +22,11 @@ class Contacts extends React.Component {
 		return (
 			<div className="container" data-testid="contacts">
                 { loading ? <Loading /> : null }
-
+                
 				<section className="contacts">
-                    { contacts.length === 0 ? null : <Contact key={labelObj.id} contact={labelObj} /> }
+                    { contacts.length === 0 ? null : <Contact key={labelObj.id} data={labelObj} /> }
 					{ contacts.map(contact => {
-                        return <Contact key={contact.id} contact={contact} />
+                        return <Contact key={contact.id} data={contact} />
                     }) }
 				</section>
 			</div>

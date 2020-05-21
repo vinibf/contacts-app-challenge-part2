@@ -3,33 +3,33 @@ import dayjs from 'dayjs';
 
 class Contact extends React.Component {
 	render() {
-        const { contact } = this.props;
+        const { data } = this.props;
 
-        let date = contact.admissionDate;
+        let date = data.admissionDate;
         if(date !== "Admissão") date = dayjs(date).format("DD/MM/YYYY");
 
 		return (
 			<article className="contact" data-testid="contact">
 				<span className="contact__avatar" data-testid="contact-avatar">
-                    <img src={contact.avatar} alt={contact.name} />
+                    <img src={data.avatar} alt={data.name} />
                 </span>
 				<span className="contact__data" data-testid="contact-name">
-                    {contact.name}
+                    {data.name}
                 </span>
 				<span className="contact__data" data-testid="contact-phone">
-                    {contact.phone}
+                    {data.phone}
                 </span>
 				<span className="contact__data" data-testid="contact-country">
-                    {contact.country}
+                    {data.country}
                 </span>
 				<span className="contact__data" data-testid="contact-date">
                     { date }
                 </span>
 				<span className="contact__data" data-testid="contact-company">
-                    {contact.company}
+                    {data.company}
                 </span>
 				<span className="contact__data" data-testid="contact-department">
-                    {contact.department}
+                    {data.department}
                 </span>
 			</article>
 		);
